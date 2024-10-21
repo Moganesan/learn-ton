@@ -8,8 +8,9 @@ import {
     toNano,
 } from "ton";
 import qs from "qs";
+import dotenv from "dotenv";
 import qrcode from "qrcode-terminal";
-
+dotenv.config();
 
 async function deployScript() {
     console.log(
@@ -35,14 +36,14 @@ async function deployScript() {
     });
 
     console.log(
-        `The address of the contract is following: ${address.toString()}`
+        `The address of the contract is following: ${address.toString()} will deploy on ${process.env.TESTNET ? "TESTNET" : "MAINET"}`
     );
     console.log(`Please scan the QR code below to deploy the contract:`);
 
     let link =
         `https://tonhub.com/transfer/` +
         address.toString({
-            testOnly: true,
+            testOnly: process.env.TESTNET ? true : false,
         }) +
         "?" +
         qs.stringify({

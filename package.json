@@ -22,14 +22,20 @@
   "scripts": {
     "compile": "ts-node ./scripts/compile.ts",
     "test": "yarn compile && yarn jest",
-    "deploy:testnet": "yarn compile && ts-node ./scripts/deploy.ts"
+    "deploy": "TESTNET=true yarn compile && ts-node ./scripts/deploy.ts",
+    "deploy:mainet": "yarn compile && ts-node ./scripts/deploy.ts",
+    "onchaintest": "TESTNET=true ts-node ./scripts/onchaintest.ts",
+    "onchaintest:mainet": "ts-node ./scripts/onchaintest.ts"
   },
   "dependencies": {
+    "@orbs-network/ton-access": "^2.3.3",
     "@ton/crypto": "^3.3.0",
     "@types/q": "^1.5.8",
     "@types/qrcode-terminal": "^0.12.2",
+    "dotenv": "^16.4.5",
     "qrcode-terminal": "^0.12.0",
     "qs": "^6.13.0",
-    "ton": "^13.9.0"
+    "ton": "^13.9.0",
+    "ton-core": "^0.53.0"
   }
 }
